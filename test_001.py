@@ -15,7 +15,7 @@ class TestClass:
         desired_caps = {
             "platformName": "Android",
             "platformVersion": "11.0.0",
-            "deviceName": "eqb6w4zldmmvvwln",
+            "deviceName": "emulator-5554",
             "appPackage": "com.suning.mobile.ebuy",
             "appActivity": "com.suning.mobile.ebuy.host.InitialActivity"
         }
@@ -25,26 +25,30 @@ class TestClass:
         driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
         # 进入app，点击同意按钮
-        agree_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("同意")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(agree_locator)).click()
+        driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("同意")').click()
+        # agree_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("同意")')
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(agree_locator)).click()
         # 点击我知道了按钮
-        know_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/home_new_person_delete_iv')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(know_locator)).click()
+        #driver.find_element(MobileBy.XPATH,'//android.widget.ImageView[@content-desc="关闭"]').click()
+        driver.find_element(MobileBy.ID,"com.suning.mobile.ebuy:id/home_new_person_delete_iv").click()
+        # know_locator = (MobileBy.ACCESSIBILITY_ID, "关闭")
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(know_locator)).click()
         time.sleep(10)
 
         # 滑动屏幕，露出新品tab
-        x = driver.get_window_size()['width']
-        y = driver.get_window_size()['height']
-        driver.swipe(int(x * 0.5), int(y * 0.5), int(x * 0.5), int(y * 0.1), duration=500)
+        # x = driver.get_window_size()['width']
+        # y = driver.get_window_size()['height']
+        # driver.swipe(int(x * 0.5), int(y * 0.5), int(x * 0.5), int(y * 0.1), duration=500)
 
-        # 点击新品tab
-        newcomm_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("新品")')
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(newcomm_locator)).click()
+        # 点击手机数码tab
+        driver.find_element(MobileBy.XPATH,'//android.widget.RelativeLayout[@content-desc="苏宁超市"]/android.widget.ImageView').click()
+        # newcomm_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("手机数码")')
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(newcomm_locator)).click()
         time.sleep(3)
 
     def test_001(self):
         # 获取首页新品第一个商品名称
-        home_name_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/product_name_tv_1')
+        home_name_locator = (MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.FrameLayout[2]/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[4]/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ImageView')
         home_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_name_locator))).text
         print(home_name)
 
@@ -64,7 +68,7 @@ class TestClass:
     def test_002(self):
 
         # 获取首页新品第一个商品价格
-        home_price_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/product_price_tv_1')
+        home_price_locator = (MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.FrameLayout[2]/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[4]/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.ImageView')
         home_price = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_price_locator))).text
         print(home_price)
 
