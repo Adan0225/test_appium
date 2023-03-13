@@ -26,16 +26,16 @@ class TestClass:
 
         # 进入app，輸入手機號碼 and 登入
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/close_btn").click()
-        time.sleep(3)
+        time.sleep(5)
         #driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/bottom_navigation_view_item_text").click()
         driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("我的帳戶")').click()
         time.sleep(2)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("0919541317")
-        time.sleep(2)
+        time.sleep(3)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_login").click()
-        time.sleep(2)
+        time.sleep(3)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("dlink5229")
-        time.sleep(2)
+        time.sleep(3)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_input_passwd").click()
         time.sleep(3)
 
@@ -68,15 +68,18 @@ class TestClass:
         time.sleep(2)
         homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
-        #彈出關閉
+        #彈出關閉 截圖提醒
         popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        time.sleep(2)
         # 點選熱銷排行
         hotInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("熱銷排行")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(hotInfo_locator)).click()
+        time.sleep(2)
         # 獲取折扣活動
         discountInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("折扣活動")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountInfo_locator)).click()
+        time.sleep(2)
         #
         # # 获取详情页商品名称
         # pageInfo_name_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/tv_1')
@@ -87,9 +90,10 @@ class TestClass:
         # assert home_name == pageInfo_name, f"预期名称为{home_name}，实际结果为{pageInfo_name}"
 
     def test_002(self):
+
         homep2 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep2)).click()
-        time.sleep(2)
+        time.sleep(3)
         # 彈出關閉
         popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
