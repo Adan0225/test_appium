@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time  : 2022/6/23 19:12
-# Author : 拒绝内卷的小测试
+# Author : Adan
 
 from appium.webdriver.common.mobileby import MobileBy
 from appium import webdriver
@@ -11,7 +11,7 @@ import time
 
 class TestClass:
     def setup(self):
-        # 创建⼀个字典,⽤于存储设备和应⽤信息
+        # 創建⼀個字典,⽤於存儲設備和應用訊息
         desired_caps = {
             "platformName": "Android",
             "platformVersion": "12.0",
@@ -20,7 +20,7 @@ class TestClass:
             "appActivity": "com.nineyi.MainActivity"
         }
 
-        # 与appium session之间建⽴联系，括号内为appium服务地址
+        # 與appium session之間建⽴聯繫，括號為appium服務地址
         global driver
         driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -29,7 +29,7 @@ class TestClass:
         time.sleep(3)
         #driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/bottom_navigation_view_item_text").click()
         driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("我的帳戶")').click()
-        time.sleep(3)
+        time.sleep(2)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("0919541317")
         time.sleep(2)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_login").click()
@@ -37,6 +37,7 @@ class TestClass:
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("dlink5229")
         time.sleep(2)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_input_passwd").click()
+        time.sleep(3)
 
         # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("請輸入您的手機號碼")').send_keys("0919541317")
         # time.sleep(2)
@@ -64,11 +65,18 @@ class TestClass:
         home_name_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/membercard_card_front_img")
         home_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_name_locator))).text
         print(home_name)
-
-        # 点击第一个新品进商品详情页
-        # pageInfo_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/iv_3')
-        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(pageInfo_locator)).click()
-        # time.sleep(10)
+        time.sleep(2)
+        homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
+        #彈出關閉
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        # 點選熱銷排行
+        hotInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("熱銷排行")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(hotInfo_locator)).click()
+        # 獲取折扣活動
+        discountInfo_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("折扣活動")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountInfo_locator)).click()
         #
         # # 获取详情页商品名称
         # pageInfo_name_locator = (MobileBy.ID, 'com.suning.mobile.ebuy:id/tv_1')
@@ -78,12 +86,20 @@ class TestClass:
         # # 断言首页商品名称等于详情页商品名称
         # assert home_name == pageInfo_name, f"预期名称为{home_name}，实际结果为{pageInfo_name}"
 
-    # def test_002(self):
-    #
-    #     # 获取首页新品第一个商品价格
-    #     home_price_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("¥9.9")')
-    #     home_price = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_price_locator))).text
-    #     print(home_price)
+    def test_002(self):
+        homep2 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep2)).click()
+        time.sleep(2)
+        # 彈出關閉
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        #領折價券
+        discountcoupon_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn2')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountcoupon_locator)).click()
+
+        # home_price_locator = (MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="CMSProduct2773391"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[2]')
+        # home_price = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_price_locator))).text
+        # print(home_price)
     #
     #     # 点击第一个新品进商品详情页
     #     pageInfo_locator = (MobileBy.XPATH, '//android.widget.RelativeLayout[@content-desc="抢神券"]')
