@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Time  : 2022/6/23 19:12
+# @Time  : 2023/3/13 19:12
 # Author : Adan
 
 from appium.webdriver.common.mobileby import MobileBy
@@ -26,18 +26,18 @@ class TestClass:
 
         # 进入app，輸入手機號碼 and 登入
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/close_btn").click()
-        time.sleep(5)
+        time.sleep(8)
         #driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/bottom_navigation_view_item_text").click()
         driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("我的帳戶")').click()
-        time.sleep(2)
+        time.sleep(5)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("0919541317")
-        time.sleep(3)
+        time.sleep(5)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_login").click()
         time.sleep(3)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("dlink5229")
-        time.sleep(3)
+        time.sleep(6)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_input_passwd").click()
-        time.sleep(3)
+        time.sleep(5)
 
         # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("請輸入您的手機號碼")').send_keys("0919541317")
         # time.sleep(2)
@@ -65,9 +65,10 @@ class TestClass:
         home_name_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/membercard_card_front_img")
         home_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_name_locator))).text
         print(home_name)
-        time.sleep(2)
+        time.sleep(5)
         homep = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep)).click()
+        time.sleep(3)
         #彈出關閉 截圖提醒
         popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
@@ -100,6 +101,39 @@ class TestClass:
         #領折價券
         discountcoupon_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn2')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountcoupon_locator)).click()
+        time.sleep(2)
+
+    def test_003(self):
+        homep3 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep3)).click()
+        time.sleep(3)
+        #彈出關閉
+        popupclose = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose)).click()
+        time.sleep(3)
+
+        #點數兌換
+        pointexchange_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn1')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(pointexchange_locator)).click()
+        time.sleep(2)
+        #我的帳戶
+       # driver.find_element(MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarMember"]/android.view.ViewGroup/android.widget.TextView').click()
+        # member = (MobileBy.XPATH, '//android.view.ViewGroup[@content-desc="tabBarMember"]/android.view.ViewGroup/android.widget.TextView')
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(member)).click()
+       # time.sleep(5)
+        # 修改密碼
+        # changepw = (MobileBy.XPATH, '//android.widget.FrameLayout[@content-desc="memberChangePwBtn"]/android.widget.RelativeLayout/android.widget.TextView')
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(changepw)).click()
+        # time.sleep(3)
+        # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("原始密碼")').send_keys("dlink5229")
+        # time.sleep(3)
+        # driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("輸入新密碼6-20碼英數字")').send_keys("icash1234")
+        # time.sleep(3)
+        # driver.find_element(MobileBy.ID, "com.nineyi.shop.s002131:id/id_btn_next").click()
+        # time.sleep(3)
+        # 領折價券
+        # discountcoupon_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/brand_link_btn2')
+        # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(discountcoupon_locator)).click()
 
         # home_price_locator = (MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="CMSProduct2773391"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[2]')
         # home_price = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located(home_price_locator))).text
