@@ -147,6 +147,25 @@ class TestClass:
         # 買一送一
         driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
         time.sleep(3)
+
+    def test_005(self):
+        homep4 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
+        time.sleep(5)
+        # 彈出關閉
+        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        time.sleep(3)
+
+        # 購物車
+        #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
+        driver.find_element(MobileBy.ACCESSIBILITY_ID,'tabBarCart').click()
+        time.sleep(3)
+
+        #下一步
+        driver.find_element(MobileBy.ID, "com.nineyi.shop.s002131:id/shoppingcart_next_step_button").click()
+        time.sleep(3)
+
         #設定手機條碼載具
         #driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/memberzone_item_title').click()
         #driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("設定手機條碼載具")').click()
