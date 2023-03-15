@@ -35,7 +35,7 @@ class TestClass:
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_login").click()
         time.sleep(3)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_et_input").send_keys("dlink5229")
-        time.sleep(6)
+        time.sleep(5)
         driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/id_btn_input_passwd").click()
         time.sleep(5)
 
@@ -146,7 +146,7 @@ class TestClass:
 
         # 買一送一
         driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
-        time.sleep(3)
+        time.sleep(4)
 
     def test_005(self):
         homep4 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
@@ -161,6 +161,14 @@ class TestClass:
         #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
         driver.find_element(MobileBy.ACCESSIBILITY_ID,'tabBarCart').click()
         time.sleep(3)
+
+        item_price = driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,'new UiSelector().text("NT$420")').text
+        #item_price = driver.find_element(MobileBy.ID,"com.nineyi.shop.s002131:id/shoppingcart_next_step_button").text
+        expected_price = "NT$410"
+        if item_price == expected_price:
+            print("Item price is correct!")
+        else:
+            print(f"Item price is incorrect. Expected {expected_price}, but got {item_price}")
 
         #下一步
         driver.find_element(MobileBy.ID, "com.nineyi.shop.s002131:id/shoppingcart_next_step_button").click()
