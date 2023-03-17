@@ -158,6 +158,7 @@ class TestClass:
         time.sleep(3)
 
         # 購物車
+        
         #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
         driver.find_element(MobileBy.ACCESSIBILITY_ID,'tabBarCart').click()
         time.sleep(3)
