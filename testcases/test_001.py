@@ -18,7 +18,7 @@ class TestClass:
             "deviceName": "127.0.0.1:5555",
             "appPackage": "com.nineyi.shop.s002131",
             "appActivity": "com.nineyi.MainActivity",
-            "newCommandTimeout": 120
+            "newCommandTimeout": 180
         }
 
         # 與appium session之間建⽴聯繫，括號為appium服務地址
@@ -45,7 +45,9 @@ class TestClass:
         passwd_btn_locator = (MobileBy.ID, "com.nineyi.shop.s002131:id/id_btn_input_passwd")
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(passwd_btn_locator)).click()
 
-        
+        time.sleep(3)
+
+
         # agree_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("同意")')
         # WebDriverWait(driver, 10).until(EC.visibility_of_element_located(agree_locator)).click()
         # 点击我知道了按钮
@@ -150,26 +152,32 @@ class TestClass:
         #time.sleep(3)
 
         # 買一送一
-        driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
+        buyonegetpone_locator = (MobileBy.ID,'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(buyonegetpone_locator)).click()
+       # driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
        # time.sleep(4)
 
     def test_005(self):
         homep4 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
        # time.sleep(5)
-        # 彈出關閉
+        # 等待關閉按鈕出現
         popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
-       # time.sleep(3)
+        #點擊關閉按鈕
 
-        # 購物車
+
+        #等待購物車按鈕出現
         
         #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_left').click()
-        driver.find_element(MobileBy.ACCESSIBILITY_ID,'tabBarCart').click()
-              #定位商品價格元素
+        cart_locator = (MobileBy.ACCESSIBILITY_ID, 'tabBarCart')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(cart_locator))
+        driver.find_element(*cart_locator).click() #進入購物車頁面
+        #定位商品價格元素
 
         item_price_locator = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("NT$420")')
         item_price_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(item_price_locator))
+
 
 
 
@@ -188,7 +196,23 @@ class TestClass:
 
         #下一步
         driver.find_element(MobileBy.ID, "com.nineyi.shop.s002131:id/shoppingcart_next_step_button").click()
-       # time.sleep(3)
+
+    def test_006(self):
+        homep4 = (MobileBy.XPATH,'//android.view.ViewGroup[@content-desc="tabBarHome"]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.TextView')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(homep4)).click()
+        # time.sleep(5)
+        # 彈出關閉
+        popupclose2 = (MobileBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("關閉")')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(popupclose2)).click()
+        # time.sleep(3)
+
+        # 買二送二
+        buyonegetpone_locator = (MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_leftbb')
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(buyonegetpone_locator)).click()
+        #driver.find_element(MobileBy.ID, 'com.nineyi.shop.s002131:id/cms_item_view_carousel_img_leftbb').click()
+    # time.sleep(4)
+
+    # time.sleep(3)
 
         #設定手機條碼載具
         #driver.find_element(MobileBy.ID,'com.nineyi.shop.s002131:id/memberzone_item_title').click()
